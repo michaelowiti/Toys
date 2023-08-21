@@ -1,12 +1,18 @@
-def convert2_24hrs(hour,minute,period):
-    if period == "pm" and hour != 12:
-        hour +=12 
+def get_consonant_value(c):
+    return ord(c) - ord('a') + 1
 
-    elif period=="am" and hour ==12:
-        hour = 0    
+def highest_consonant_value(s):
+    consonants = "bcdfghjklmnpqrstvwxyz"
+    max_value = 0
+    current_value = 0
+
+    for char in s:
+        if char in consonants:
+            current_value += get_consonant_value(char)
+            max_value = max(max_value, current_value)
+        else:
+            current_value = 0
+
+    return max_value
 
 
-    return f"{hour:02d}{minute:02d}" 
-
-time1 = convert2_24hrs(12, 0, "pm")  # Output: "1200"
-time2 = convert2_24hrs(12, 0, "am")  # Output: "0000"   
